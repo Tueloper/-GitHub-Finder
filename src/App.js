@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
-import './App.css';
+import './assets/css/App.css';
 
 class App extends Component {
 	state = {
@@ -12,25 +12,21 @@ class App extends Component {
 	// lifecycle methods
 	async componentDidMount () {
 		this.setState({ loading: true });
-		const res = await axios.get('https://api.github.com/users?since=135');
+		const res = await axios.get(
+			`https://api.github.com/users?since=135&client_id=${process.env
+				.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+		);
 		console.log(res);
 		this.setState({ users: res.data, loading: false });
 	}
 
 	render () {
-		const name = 'Tochi ';
-		const loading = false;
-		const show = true;
 		return (
 			<div className='App'>
 				<Navbar />
 				<div className='container'>
 					<Users loading={this.state.loading} users={this.state.users} />
 				</div>
-				{
-					loading ? <h5>Loading...</h5> :
-					<h1>Hello React, {show && name}, needs you</h1>}
-				<h2>Second Div</h2>
 			</div>
 		);
 	}
