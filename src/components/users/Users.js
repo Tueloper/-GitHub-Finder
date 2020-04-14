@@ -7,8 +7,15 @@ const Users = ({ loading, users }) => {
 	if (loading) {
 		return <Spinner />;
 	}
-	else {
+	else if (users) {
 		return <div style={userType}>{users.map((user) => <UserItem key={user.id} user={user} />)}</div>;
+	}
+	else {
+		return (
+			<h1 style={{ fontSize: 'italic' }} className='text-center'>
+				No User Found!!....
+			</h1>
+		);
 	}
 };
 
