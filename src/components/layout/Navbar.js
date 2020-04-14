@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export class Navbar extends Component {
-	// static props can be  used asa a default props if its not passed where the componenets are called
-	static defaultProps = {
-		title: 'Github Finder',
-		icon: 'fab fa-github'
-	};
+const Navbar = ({ icon, title }) => {
+	return (
+		<div className='bg-primary px-2'>
+			<h1>
+				<i className={icon} />
+				{title}
+			</h1>
+		</div>
+	);
+};
 
-	// this specify the properties of the props be used
-	static propTypes = {
-		title: PropTypes.string.isRequired,
-		icon: PropTypes.string.isRequired
-	};
+// static props can be  used asa a default props if its not passed where the componenets are called
+Navbar.defaultProps = {
+	title: 'Github Finder',
+	icon: 'fab fa-github'
+};
 
-	render () {
-		return (
-			<div className='bg-primary px-2'>
-				<h1>
-					<i className={this.props.icon} />
-					{this.props.title}
-				</h1>
-			</div>
-		);
-	}
-}
-
+// this specify the properties of the props be used
+Navbar.propTypes = {
+	title: PropTypes.string.isRequired,
+	icon: PropTypes.string.isRequired
+};
 export default Navbar;
